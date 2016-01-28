@@ -1,0 +1,51 @@
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+input, select, button {
+  font-size: 16px;
+  padding: 5px 10px;
+  border: 0;
+  background: #eee;
+}
+
+button {
+  padding: 7px 10px;
+  background: #26a69a;
+  color: #fff;
+  cursor: pointer;
+}
+
+.wrapper {
+  padding: 20px;
+}
+
+#content {
+  /*display: none;*/
+}
+
+header {
+  background: #e5e5e5;
+  padding: 20px;
+}
+
+.table-wrapper {
+  background: #e5e5e5;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+table {
+  width: 100%;
+}
+
+table th {
+  text-align: left;
+}

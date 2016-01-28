@@ -1,5 +1,5 @@
 var pseudoclassicalPattern = (function(){
-
+  'use strict';
   /**
   * Pseudoclassical pattern
   **/

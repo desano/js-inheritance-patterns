@@ -1,4 +1,5 @@
 var functionalPattern = (function(){
+  'use strict';
   /**
   * Functional pattern
   **/

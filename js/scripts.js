@@ -1,6 +1,9 @@
-var patternSelect = document.getElementById('pattern'),
-    content = document.getElementById('content'),
-    Persons = {};
+(function(pseudoclassicalPattern, functionalPattern, prototypalPattern){
+  'use strict';
+
+  var patternSelect = document.getElementById('pattern'),
+      content = document.getElementById('content'),
+      Persons = {};
 
   //content.style.display = 'block';
 
@@ -25,8 +28,8 @@ var patternSelect = document.getElementById('pattern'),
       // skip loop if the property is from prototype
       if (!Persons.hasOwnProperty(person)) continue;
 
-      var obj = Persons[person];
-      var name, gender, planet;
+      var obj = Persons[person],
+          name, gender, planet;
 
       for (var prop in obj) {
         // skip loop if the property is from prototype
@@ -56,101 +59,107 @@ var patternSelect = document.getElementById('pattern'),
     }
   }
 
-  // default persons
-  // Persons['david'] = new Male('David (default)');
-  // Persons['maria'] = new Female('Maria (default)');
-  //showPersons();
+  patternSelect.addEventListener('change', function() {
 
-  // console.log(Persons['david'].sayGender());
-  // console.log(Persons.david.sayGender());
-  // console.log(david.sayGender());
-  // console.log(Persons);
+    var currentPattern = this.value;
+    // add person
+    $submitButton.addEventListener('click', function(e) {
 
-patternSelect.addEventListener('change', function() {
+      var nameVal = $name.value,
+      genderVal = $gender.value,
+      planetVal = $planet.value;
 
-  var currentPattern = this.value;
-  // add person
-  $submitButton.addEventListener('click', function(e) {
+      console.log('current ' + currentPattern);
 
-    var nameVal = $name.value,
-        genderVal = $gender.value,
-        planetVal = $planet.value;
+      if (currentPattern == 1) {
 
-    console.log('current ' + currentPattern);
+        if (genderVal == 'male') {
+          Persons[nameVal] = new pseudoclassicalPattern.male(nameVal + ' [pattern 1]');
+        } else {
+          Persons[nameVal] = new pseudoclassicalPattern.female(nameVal + ' [pattern 1]');
+        }
 
-    if (currentPattern == 1) {
+      } else if (currentPattern == 2) {
 
-      if (genderVal == 'male') {
-        Persons[nameVal] = new pseudoclassicalPattern.male(nameVal + ' [pattern 1]');
-      } else {
-        Persons[nameVal] = new pseudoclassicalPattern.female(nameVal + ' [pattern 1]');
+        if (genderVal == 'male') {
+          Persons[nameVal] = new functionalPattern.male(nameVal + ' [pattern 2]');
+        } else {
+          Persons[nameVal] = new functionalPattern.female(nameVal + ' [pattern 2]');
+        }
+
+      } else if (currentPattern == 3) {
+
+        if (genderVal == 'male') {
+          Persons[nameVal] = prototypalPattern.male(nameVal + ' [pattern 3]');
+        } else {
+          Persons[nameVal] = prototypalPattern.female(nameVal + ' [pattern 3]');
+        }
+
       }
 
-    } else if (currentPattern == 2) {
+      // old functions
+      // if (currentPattern == 1) {
+      //
+      //   if (genderVal == 'male') {
+      //     // Persons[nameVal] = new Male(nameVal + ' [pattern 1]');
+      //     // if (planetVal) {
+      //     //   Male.prototype.planetOfBirth = planetVal;
+      //     // }
+      //
+      //   } else {
+      //     // Persons[nameVal] = new Female(nameVal + ' [pattern 1]');
+      //     // if (planetVal) {
+      //     //   Female.prototype.planetOfBirth = planetVal;
+      //     // }
+      //
+      //     new pseudoclassicalPattern.female(nameVal + ' [pattern 1]');
+      //   }
+      //
+      // } else if (currentPattern == 2) {
+      //
+      //   if (genderVal == 'male') {
+      //     Persons[nameVal] =  male(nameVal + ' [pattern 2]');
+      //     if (planetVal) {
+      //       Persons[nameVal].planetOfBirth = planetVal;
+      //     }
+      //   } else {
+      //     Persons[nameVal] = female(nameVal + ' [pattern 2]');
+      //     if (planetVal) {
+      //       Persons[nameVal].planetOfBirth = planetVal;
+      //     }
+      //   }
+      //
+      // } else if (currentPattern == 3) {
+      //
+      //   if (genderVal == 'male') {
+      //     Persons[nameVal] = Object.create(male, {
+      //         name: {value: nameVal + ' [pattern 3]'},
+      //         planetOfBirth: {value: planetVal}
+      //     });
+      //   } else {
+      //     Persons[nameVal] = Object.create(female, {
+      //         name: {value: nameVal + ' [pattern 3]'},
+      //         planetOfBirth: {value: planetVal}
+      //     });
+      //   }
+      //
+      // }
 
-      if (genderVal == 'male') {
-        Persons[nameVal] = new functionalPattern.male(nameVal + ' [pattern 2]');
-      } else {
-        Persons[nameVal] = new functionalPattern.female(nameVal + ' [pattern 2]');
-      }
-
-    } else if (currentPattern == 3) {
-
-      // Persons[nameVal] = Object.create(male, {
-      //      name: {value: nameVal + ' [pattern 3]'}
-      //  });
-
-    }
-
-    // old functions
-    // if (currentPattern == 1) {
-    //
-    //   if (genderVal == 'male') {
-    //     // Persons[nameVal] = new Male(nameVal + ' [pattern 1]');
-    //     // if (planetVal) {
-    //     //   Male.prototype.planetOfBirth = planetVal;
-    //     // }
-    //
-    //   } else {
-    //     // Persons[nameVal] = new Female(nameVal + ' [pattern 1]');
-    //     // if (planetVal) {
-    //     //   Female.prototype.planetOfBirth = planetVal;
-    //     // }
-    //
-    //     new pseudoclassicalPattern.female(nameVal + ' [pattern 1]');
-    //   }
-    //
-    // } else if (currentPattern == 2) {
-    //
-    //   if (genderVal == 'male') {
-    //     Persons[nameVal] =  male(nameVal + ' [pattern 2]');
-    //     if (planetVal) {
-    //       Persons[nameVal].planetOfBirth = planetVal;
-    //     }
-    //   } else {
-    //     Persons[nameVal] = female(nameVal + ' [pattern 2]');
-    //     if (planetVal) {
-    //       Persons[nameVal].planetOfBirth = planetVal;
-    //     }
-    //   }
-    //
-    // } else if (currentPattern == 3) {
-    //
-    //   if (genderVal == 'male') {
-    //     Persons[nameVal] = Object.create(male, {
-    //         name: {value: nameVal + ' [pattern 3]'},
-    //         planetOfBirth: {value: planetVal}
-    //     });
-    //   } else {
-    //     Persons[nameVal] = Object.create(female, {
-    //         name: {value: nameVal + ' [pattern 3]'},
-    //         planetOfBirth: {value: planetVal}
-    //     });
-    //   }
-    //
-    // }
-
-    showPersons();
-    e.preventDefault();
+      showPersons();
+      e.preventDefault();
+    });
   });
-});
+
+}(pseudoclassicalPattern, functionalPattern, prototypalPattern));
+
+
+
+// default persons
+// Persons['david'] = new Male('David (default)');
+// Persons['maria'] = new Female('Maria (default)');
+//showPersons();
+
+// console.log(Persons['david'].sayGender());
+// console.log(Persons.david.sayGender());
+// console.log(david.sayGender());
+// console.log(Persons);

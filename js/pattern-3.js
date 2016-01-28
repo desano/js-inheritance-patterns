@@ -14,18 +14,18 @@ var functionalPattern = (function(){
       }
   };
 
-  var Male = Object.create(human, {
+  var male = Object.create(human, {
       gender: {value: 'Male'}
   });
 
-  var Female = Object.create(human, {
+  var female = Object.create(human, {
       gender: {value: 'Female'}
   });
 
   // public access methods
   return {
-    male: Male,
-    female: Female
+    male: male,
+    female: female
   }
 
 })();
